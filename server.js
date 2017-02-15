@@ -1,10 +1,10 @@
 //adding express package
 var express = require('express');
-var middleware = require('./middleware.js');
+
 // will turn express into a funcition 
 var app = express();
-var port = 3000;
-
+var port = process.env.PORT || 3000;
+var middleware = require('./middleware.js');
 
 // this is being moved to a different file. 
 // var middleware = {
@@ -20,7 +20,7 @@ var port = 3000;
 
 // this will add middleware to all routes in app
 // app.use(middleware.requireAuthentication);
-// app.use(middleware.logger);
+app.use(middleware.logger);
 
 // adding the middleware call to the second part will call the route it is associated to
 app.get('/about', middleware.requireAuthentication, function (req, res) {
